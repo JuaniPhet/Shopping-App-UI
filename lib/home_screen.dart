@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_second_app/cart_screen.dart';
+import 'package:flutter_second_app/setting_screen.dart';
+import 'package:flutter_second_app/wallet_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int indexSelected = 0;
+  List<Widget> screenList = const [
+    HomeScreen(),
+    WalletScreen(),
+    CartScreen(),
+    SettingScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,11 +196,15 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        height: 300,
+                        height: 280,
                         width: 200,
                         decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 236, 236, 236),
                           borderRadius: BorderRadius.all(Radius.circular(15)),
+                          image: DecorationImage(
+                            image: AssetImage("img/femme-1.png"),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -216,11 +235,15 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        height: 300,
+                        height: 280,
                         width: 200,
                         decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 236, 236, 236),
                           borderRadius: BorderRadius.all(Radius.circular(15)),
+                          image: DecorationImage(
+                            image: AssetImage("img/femme-2.png"),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -250,6 +273,43 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: const Color.fromARGB(255, 95, 95, 95),
+        selectedItemColor: Colors.deepPurple,
+        showSelectedLabels: true,
+        showUnselectedLabels: false,
+        iconSize: 30,
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          setState(() {
+            indexSelected = index;
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => screenList[indexSelected],
+              ),
+            );
+          });
+        },
+        currentIndex: indexSelected,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.store),
+            label: "Store",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.wallet),
+            label: "Wallet",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: "Cart",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Settings",
+          ),
         ],
       ),
     );
