@@ -1,23 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_second_app/cart_screen.dart';
-import 'package:flutter_second_app/setting_screen.dart';
-import 'package:flutter_second_app/wallet_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int indexSelected = 0;
-  List<Widget> screenList = const [
-    HomeScreen(),
-    WalletScreen(),
-    CartScreen(),
-    SettingScreen(),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
           //     ],
           //   ),
           // ),
-          for (int i = 0; i < 4; i++)
+          for (int i = 0; i < 6; i++)
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 15,
@@ -202,8 +187,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Color.fromARGB(255, 236, 236, 236),
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           image: DecorationImage(
-                            image: AssetImage("img/femme-1.png"),
-                            fit: BoxFit.cover,
+                            image: AssetImage("img/femme-2.png"),
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),
@@ -241,8 +226,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Color.fromARGB(255, 236, 236, 236),
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           image: DecorationImage(
-                            image: AssetImage("img/femme-2.png"),
-                            fit: BoxFit.cover,
+                            image: AssetImage("img/femme-1.png"),
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),
@@ -273,43 +258,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: const Color.fromARGB(255, 95, 95, 95),
-        selectedItemColor: Colors.deepPurple,
-        showSelectedLabels: true,
-        showUnselectedLabels: false,
-        iconSize: 30,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          setState(() {
-            indexSelected = index;
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => screenList[indexSelected],
-              ),
-            );
-          });
-        },
-        currentIndex: indexSelected,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.store),
-            label: "Store",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.wallet),
-            label: "Wallet",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: "Cart",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
-          ),
         ],
       ),
     );

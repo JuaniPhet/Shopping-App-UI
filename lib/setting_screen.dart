@@ -1,23 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_second_app/cart_screen.dart';
-import 'package:flutter_second_app/home_screen.dart';
-import 'package:flutter_second_app/wallet_screen.dart';
 
-class SettingScreen extends StatefulWidget {
+class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
 
-  @override
-  State<SettingScreen> createState() => _SettingScreenState();
-}
-
-class _SettingScreenState extends State<SettingScreen> {
-  int indexSelected = 3;
-  List<Widget> screenList = const [
-    HomeScreen(),
-    WalletScreen(),
-    CartScreen(),
-    SettingScreen(),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -283,43 +268,6 @@ class _SettingScreenState extends State<SettingScreen> {
                 size: 15,
               ),
             ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: const Color.fromARGB(255, 95, 95, 95),
-        selectedItemColor: Colors.deepPurple,
-        showSelectedLabels: true,
-        showUnselectedLabels: false,
-        iconSize: 30,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          setState(() {
-            indexSelected = index;
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => screenList[indexSelected],
-              ),
-            );
-          });
-        },
-        currentIndex: indexSelected,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.store),
-            label: "Store",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.wallet),
-            label: "Wallet",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: "Cart",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
           ),
         ],
       ),
